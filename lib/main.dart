@@ -4,7 +4,7 @@ import 'package:sqflite/sqflite.dart';
 
 import 'home.dart';
 import 'memberDetail.dart';
-import 'order.dart';
+import 'orderContents.dart';
 import 'history.dart';
 import 'menuContents.dart';
 import 'memberContents.dart';
@@ -33,11 +33,12 @@ class MyApp extends StatelessWidget {
       // 라우터 설정
       routes: {
         '/': (context) => Home(),                             // 메인 메뉴 화면
-        '/order': (context) => const Order(),                         // 주문 하기
-        '/history': (context) => const History(),                     // 주문 이력
-        '/menuContents': (context) => MenuContents(_database),         // 커피 메뉴
-        '/memberContents': (context) => MemberContents(_database),     // 부서원 관리
+        '/orderContents': (context) => OrderContents(_database),                         // 주문 하기
+        '/orderMenu': (context) => MenuContents(_database, ''),
+        '/history': (context) => const History(),                      // 주문 이력
+        '/menuContents': (context) => MenuContents(_database, 'new'),  // 커피 메뉴
         '/menuDetail': (context) => MenuDetail(_database),             // 메뉴 편집
+        '/memberContents': (context) => MemberContents(_database),     // 부서원 관리
         '/memberDetail': (context) => MemberDetail(_database),         // 멤버 편집
       },
 

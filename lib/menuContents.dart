@@ -7,7 +7,8 @@ class MenuContents extends StatefulWidget {
 
   /// 전달 받은 database
   final Future<Database> db;
-  MenuContents(this.db);
+  String menuFlag;
+  MenuContents(this.db, this.menuFlag);
 
   @override
   State<StatefulWidget> createState() => _MenuContents();
@@ -52,31 +53,39 @@ class _MenuContents extends State<MenuContents> {
                           subtitle: Row(
                             children: <Widget>[
                               Text(menu.title!, style: const TextStyle(fontSize: 25, color: Colors.black),),
-                              TextButton(
-                                  onPressed: () async {
-                                    Menu result = await showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return AlertDialog(
-                                            title: Text('${menu.id} : ${menu.title}'),
-                                            content: const Text('Menu를 삭제하시겠습니까?'),
-                                            actions: [
-                                              TextButton(
-                                                  onPressed: () {
-                                                    Navigator.of(context).pop(menu);
-                                                  },
-                                                  child: const Text('예')),
-                                              TextButton(
-                                                  onPressed: () {
-                                                    Navigator.of(context).pop(Menu());
-                                                  },
-                                                  child: const Text('아니요')),
-                                            ],
-                                          );
-                                        });
-                                    _deleteMenu(result);
-                                  },
-                                  child: const Text('삭제')),
+                              // 메뉴 편집일 때, 삭제 버튼.
+                              if (widget.menuFlag == 'new')
+                                TextButton(
+                                    onPressed: () async {
+                                      Menu result = await showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              title: Text('${menu.id} : ${menu.title}'),
+                                              content: const Text('Menu를 삭제하시겠습니까?'),
+                                              actions: [
+                                                TextButton(
+                                                    onPressed: () {
+                                                      Navigator.of(context).pop(menu);
+                                                    },
+                                                    child: const Text('예')),
+                                                TextButton(
+                                                    onPressed: () {
+                                                      Navigator.of(context).pop(Menu());
+                                                    },
+                                                    child: const Text('아니요')),
+                                              ],
+                                            );
+                                          });
+                                      _deleteMenu(result);
+                                    },
+                                    child: const Text('삭제')),
+                              if (widget.menuFlag != 'new')
+                                TextButton(
+                                    onPressed: () async {
+                                      Navigator.of(context).pop(menu);
+                                    },
+                                    child: const Text('선택')),
                               Container(
                                 height: 1,
                                 color: Colors.black12,

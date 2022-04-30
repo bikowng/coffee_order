@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sqflite/sqflite.dart';
 
-import 'order.dart';
 import 'history.dart';
 
 class Home extends StatefulWidget {
@@ -43,7 +41,7 @@ class _Home extends State<Home> {
                 // TODO : 나머지 페이지도 menu contents 처럼 라우터 이동으로 변경해야 함.
                 switch (index) {
                   case 0:
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Order()));
+                    Navigator.of(context).pushNamed('/orderContents');
                     break;
                   case 1:
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => const History()));
