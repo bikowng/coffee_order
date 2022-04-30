@@ -1,16 +1,10 @@
-import 'package:coffee_order/menuContents.dart';
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'order.dart';
 import 'history.dart';
-import 'menuContents.dart';
-import 'member.dart';
 
 class Home extends StatefulWidget {
-  /// 전달 받은 database
-  final Future<Database> db;
-  Home(this.db);
 
   @override
   State<StatefulWidget> createState() => _Home();
@@ -58,7 +52,7 @@ class _Home extends State<Home> {
                     Navigator.of(context).pushNamed('/menuContents');
                     break;
                   case 3:
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Member()));
+                    Navigator.of(context).pushNamed('/memberContents');
                     break;
                   default:
                     // TODO : 잘못된 접근 오류 페이지로 이동

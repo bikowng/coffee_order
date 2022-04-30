@@ -101,7 +101,6 @@ class _MenuContents extends State<MenuContents> {
         /// 비동기 호출
         onPressed: () async {
           final menu = await Navigator.of(context).pushNamed('/menuDetail');
-          // _addNavigation(context);
 
           if(menu != null) {
             _insertMenu(menu as Menu);
@@ -115,13 +114,6 @@ class _MenuContents extends State<MenuContents> {
       // floatingActionButtonLocation:
       //  FloatingActionButtonLocation.centerFloat,
     );
-  }
-
-  void _addNavigation(BuildContext context) async {
-    final result = await Navigator.of(context).pushNamed('/menuDetail');
-    setState(() {
-      // TODO : detail 에서 받은 데이터를 저장하고 리스트에 표시해야 한다.
-    });
   }
 
   void _insertMenu(Menu menu) async {
